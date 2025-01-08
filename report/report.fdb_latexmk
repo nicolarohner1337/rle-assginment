@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1736330051.44829 "c:/Users/socia/Documents/GitHub/rle-assginment/report/report.tex" "report.pdf" "report" 1736330052.55127 0
+["pdflatex"] 1736330654.99028 "c:/Users/socia/Documents/GitHub/rle-assginment/report/report.tex" "report.pdf" "report" 1736330656.05799 0
   "C:/Users/socia/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1734708981 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/socia/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1728475503 11548 bdc328f0b8d700c667d163fea88d227a ""
   "C:/Users/socia/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1728475494 11948197 86d59747a1cbc2712d5ab03c91cfc3c2 ""
@@ -92,10 +92,10 @@
   "Figure_1.png" 1734598225 72493 c6ab66a32272816822dd1658da71d9b1 ""
   "Figure_2.png" 1734712231 17679 9f1e39935a8958f829338edf5330e923 ""
   "Figure_3.png" 1736326999 387484 9dda04faa5bf8b08e83f59108562818e ""
-  "c:/Users/socia/Documents/GitHub/rle-assginment/report/report.tex" 1736330050 10122 7e284ad99c74e2ce36fc64b382171890 ""
-  "report.aux" 1736330052 4170 eae60f9a73e00a1aaefb32759e1a452f "pdflatex"
-  "report.out" 1736330052 4427 ca9238d1477aee5e2fbbb3ef97d78442 "pdflatex"
-  "report.tex" 1736330050 10122 7e284ad99c74e2ce36fc64b382171890 ""
+  "c:/Users/socia/Documents/GitHub/rle-assginment/report/report.tex" 1736330632 10401 368518d4a4de33c583f20bffb8e31e3e ""
+  "report.aux" 1736330655 4170 c77ed6267c71fbd25b33c363da4e667c "pdflatex"
+  "report.out" 1736330655 4427 ca9238d1477aee5e2fbbb3ef97d78442 "pdflatex"
+  "report.tex" 1736330632 10401 368518d4a4de33c583f20bffb8e31e3e ""
   (generated)
   "report.aux"
   "report.log"

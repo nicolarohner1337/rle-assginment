@@ -16,6 +16,7 @@
 \date{\today}
 
 \begin{document}
+
 \maketitle
 
 \section{Einleitung und Baseline}
@@ -26,7 +27,7 @@ Die Baseline-Implementierung verwendet eine Random Policy und dient als Referenz
 
 
 \section{Initialer Ansatz}
-Unser initialer Ansatz konzentriert sich auf die Implementierung von PPO (Proximal Policy Optimization) als Basisalgorithmus
+Der initialer Ansatz konzentriert sich auf die Implementierung von PPO (Proximal Policy Optimization) als Basisalgorithmus
 
 \subsection{Hauptparameter}
 \begin{itemize}
@@ -70,15 +71,15 @@ Das Hyperparameter-Tuning wurde durchgeführt, um den Lernprozess zu optimieren 
 Die Wahl der optimierten Hyperparameter basiert auf folgenden Überlegungen:
 \begin{itemize}
 \item \textbf{Learning Rate (0,0005):} Ein leicht erhöhter Wert im Vergleich zur Baseline (0,00025), um die Lerngeschwindigkeit zu verbessern, aber noch niedrig genug, um Stabilität zu gewährleisten.
-\item \textbf{Number of Environments (64):} Eine Erhöhung von den ursprünglichen 16 auf 64 parallele Umgebungen. Dies ermöglicht eine bessere Parallelisierung und diversere Erfahrungssammlung. Die größere Anzahl an parallelen Umgebungen führt zu stabileren Gradienten durch mehr verschiedenartige Samples pro Update.
-\item \textbf{Batch Size (4096):} Vergrößert von der ursprünglichen Größe, um von der erhöhten Anzahl paralleler Umgebungen zu profitieren. Größere Batches ermöglichen stabilere Gradientenupdates und bessere Ausnutzung der Parallelisierung moderner GPUs. Die Größe wurde so gewählt, dass sie ein Vielfaches der Anzahl der Umgebungen ist (64 * 64).
-\item \textbf{Minibatch Size (1024):} Ein Viertel der Batch Size, was einen guten Kompromiss zwischen Rechneneffizienz und Updatestabilität darstellt. Diese Größe erlaubt 4 Minibatch-Updates pro Batch, was ausreichend Iterationen für die Optimierung bietet, ohne zu viele Updates durchzuführen, die zu übermäßigem Overfitting führen könnten.
+\item \textbf{Number of Environments (64):} Eine Erhöhung von den ursprünglichen 16 auf 64 parallele Umgebungen. Dies ermöglicht eine bessere Parallelisierung und diversere Erfahrungssammlung. Die grössere Anzahl an parallelen Umgebungen führt zu stabileren Gradienten durch mehr verschiedenartige Samples pro Update.
+\item \textbf{Batch Size (4096):} Vergrössert von der ursprünglichen Grösse, um von der erhöhten Anzahl paralleler Umgebungen zu profitieren. Grössere Batches ermöglichen stabilere Gradientenupdates und bessere Ausnutzung der Parallelisierung moderner GPUs. Die Grösse wurde so gewählt, dass sie ein Vielfaches der Anzahl der Umgebungen ist (64 * 64).
+\item \textbf{Minibatch Size (1024):} Ein Viertel der Batch Size, was einen guten Kompromiss zwischen Rechneneffizienz und Updatestabilität darstellt. Diese Grösse erlaubt 4 Minibatch-Updates pro Batch, was ausreichend Iterationen für die Optimierung bietet, ohne zu viele Updates durchzuführen, die zu übermässigem Overfitting führen könnten.
 \end{itemize}
 
 \subsubsection{Ergebnisse und Analyse}
 Die Hyperparameter-Optimierung führte zu konstanter Verbesserung der Performance während des Tranings. Aber nicht sehr signifikant. Wahrscheinlich würde längeres Traning nötig sein, um zu sehen, ob die Verbesserungen wirklich signifikant sind. Die Videos zeigen, dass der Agent das Spiel lernt aber noch nicht wirklich gut darin ist. Es scheint, dass der Agent noch nicht genügend generalisiert hat und noch weiter trainiert werden muss.
 Das Ausweichen von Schüssen und klares zielen auf die Invaders ist auch noch nicht zu sehen.
-
+\newpage
 \subsection{Variante 2: IMPALA-Architektur}
 \subsubsection{Motivation}
 Die IMPALA-Architektur wurde implementiert, um die Merkmalsextraktion und Repräsentationslernfähigkeiten durch ihre Residual-Blöcke und tiefere Netzwerkstruktur zu verbessern.
@@ -100,7 +101,7 @@ Die IMPALA-Architektur wurde implementiert, um die Merkmalsextraktion und Reprä
 
 \subsubsection{Ergebnisse und Analyse}
 Diese Erweiterung scheint Verbesserungen zu bringen. Der Agent kann schneller lernen flacht aber gegen Ende der Trainingszeit ab. Die Videos zeigen, dass der Agent das erste Level knapp meistert, jedoch das zweite Level noch nicht wirklich gelernt hat. Dies könnte darauf hindeuten, dass das Modell noch nicht genügend generalisiert hat und noch weiter trainiert werden muss.
-
+\newpage
 \subsection{Variante 3: Modifizierter Beobachtungsraum}
 \subsubsection{Motivation}
 Der Beobachtungsraum wurde modifiziert, um sich auf die relevantesten Teile des Spielbildschirms zu konzentrieren, wodurch potenziell Rauschen reduziert und die Lerneffizienz verbessert wird.
@@ -122,9 +123,9 @@ Der Beobachtungsraum wurde modifiziert, um sich auf die relevantesten Teile des 
 \subsubsection{Ergebnisse und Analyse}
 Während des Tranigns sieht man eine leicht erhöhten Return und Episodic Length. Jedoch ist die Verbesserung nicht so gross wie erwartet. Dies könnte daran liegen, dass die untere Hälfte des Bildschirms nicht so relevant ist, wie angenommen. Eine weitere Untersuchung wäre nötig, um zu sehen, ob die Modifikation des Beobachtungsraums wirklich einen Einfluss auf das Lernverhalten des Agenten hat.
 In den Videos sieht man auch nicht wirklich ein klarer Fokus auf die unteren Invaders, was darauf hindeutet, dass der Agent nicht wirklich lernt, dass die unteren Invaders auch relevant sind.
+Eventuell müsste man das Reward-System anpassen. Denn wenn der Agent Inavders ausserhalbt des Fokus abschiesst, wird er trotzdem belohnt. Dies könnte dazu führen, dass der Agent nicht lernt, dass es wichtig ist, die Invaders im Fokus zu halten.
 
-
-
+\newpage
 \subsection{Variante 4: Survival Time Bonus}
 \subsubsection{Motivation}
 Ein zentrales Problem beim Training von Agenten in Space Invaders ist die Tendenz zu riskanten Strategien, die zwar kurzfristig hohe Punktzahlen erzielen können, aber zu vorzeitigem Spielende führen. Um dieses Problem anzugehen, wurde ein Überlebenszeitbonus eingeführt, der längeres Überleben belohnt und damit indirekt defensive Strategien fördert.
@@ -148,7 +149,7 @@ Die Integration des Überlebenszeitbonus führte zu folgenden Beobachtungen:
 \end{itemize}
 
 
-
+\newpage
 
 \section{Vergleichende Analyse}
 \begin{figure}[H]
