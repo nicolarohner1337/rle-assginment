@@ -211,7 +211,7 @@ poetry run pip install "stable_baselines3==2.0.0a1" "gymnasium[atari,accept-rom-
             if "final_info" in infos:
                 for info in infos["final_info"]:
                     if info and "episode" in info:
-                        print(f"global_step={global_step}, episodic_return={info['episode']['r']}")
+                        #print(f"global_step={global_step}, episodic_return={info['episode']['r']}")
                         writer.add_scalar("charts/episodic_return", info["episode"]["r"], global_step)
                         writer.add_scalar("charts/episodic_length", info["episode"]["l"], global_step)
 
@@ -238,7 +238,7 @@ poetry run pip install "stable_baselines3==2.0.0a1" "gymnasium[atari,accept-rom-
                     if global_step % 100 == 0:
                         writer.add_scalar("losses/td_loss", loss, global_step)
                         writer.add_scalar("losses/q_values", old_val.mean().item(), global_step)
-                        print("SPS:", int(global_step / (time.time() - start_time)))
+                        #print("SPS:", int(global_step / (time.time() - start_time)))
                         writer.add_scalar("charts/StepsPerSecond", int(global_step / (time.time() - start_time)), global_step)
 
                     # optimize the model
